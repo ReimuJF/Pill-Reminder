@@ -38,15 +38,41 @@ select {
 label {
     color: #1724B3;
 }
-.circle {
+.circles {
+    position: relative;
     width: 500px;
-    height: 480px;
+    height: 490px;
+    border-radius: 50%;
+    
+}
+.circle {
+    width: 80%;
+    height: 80%;
     border-radius: 50%;
     background-color: #30C44B;
     margin: 1em auto;
     box-shadow: 0px 0px 0px 11px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
     user-select: none;
+    cursor: pointer;
+    z-index: 3;
+}
+.inner-circle {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background-color: #60d51794;
+    transform: translateY(-50%) translateX(-50%);
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    filter: blur(1.5rem);
+    cursor: pointer;
+    pointer-events: none;
+}
+.circles:hover .inner-circle:not(.disabled){
+    opacity: 1;
 }
 #timer {
     color: #F90000;
@@ -54,35 +80,28 @@ label {
 }
 .circle:active{
     transform: scale(1.01);
-    outline: none;
 }
-.circle:focus{
-    
-    outline: none;
-}
-.circle:focus-visible{
-    
-    outline: none;
-}
+
 .disabled {
     cursor:auto;
     background-color: #5a5350;
     border: solid black 8px;
     box-shadow: none;
-    width: 450px;
-    height: 450px;
+    width: 75%;
+    height: 75%;
     margin: 2.5em auto;
     pointer-events: none;
 }
-/* .circle:hover::before{
 
-} */
 @media screen and (max-width: 400px){
-    .circle {
+    .circles {
         width: 325px;
-        height: 305px;
+        height: 315px;
     }
     select {
         width: 70%;
+    }
+    .inner-circle {
+        top: 50%;
     }
 }
